@@ -1,8 +1,28 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
-const pepFlashPlayerPath = path.join(__dirname, 'assert', 'pepflashplayer.dll');
-app.commandLine.appendSwitch('ppapi-flash-path', pepFlashPlayerPath);
+function getPluginNameByPlatform(platform) {
+    // 根据平台返回相应的插件名
+    switch (platform) {
+        case 'win32':
+            return 'pepflashplayer.dll';
+        // 根据需要可以添加更多平台的支持
+        default:
+            throw new Error(`Unsupported platform: ${platform}`);
+    }
+}
+
+// 获取插件名
+let pluginName = getPluginNameByPlatform(process.platform);
+let plugins = path.join(__dirname, 'assert', pluginName);
+
+// 检查是否在 ASAR 包中运行
+if (__dirname.includes('.asar')) {
+    plugins = path.join(process.resourcesPath, pluginName);
+}
+
+// 设置 Flash Player 路径
+app.commandLine.appendSwitch('ppapi-flash-path', plugins);
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -14,7 +34,8 @@ function createWindow() {
             plugins: true,
             contextIsolation: false,
             nodeIntegration: true,
-            allowRunningInsecureContent: true // 允许加载不安全的内容
+            allowRunningInsecureContent: true, // 允许加载不安全的内容
+            webSecurity: false
         }
     });
 

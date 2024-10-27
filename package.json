@@ -5,26 +5,33 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "private": true,
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "electron": "^11.5.0",
-    "electron-builder": "^22.0.0"
+    "package": "electron-builder --win"
   },
   "build": {
-    "appId": "com.xiaohuaxian.login",
+    "appId": "com.flowerangel.login",
     "productName": "小花仙便携登录器",
     "files": [
       "**/*"
     ],
-    "icon": "icon/icon.ico",
+    "extraResources": [
+      {
+        "from": "assert/pepflashplayer.dll",
+        "to": "pepflashplayer.dll"
+      }
+    ],
     "win": {
-      "target": "nsis"
+      "target": "zip",
+      "icon": "icon/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
+  },
+  "private": true,
+  "devDependencies": {
+    "electron-builder": "^22.0.0",
+    "electron": "^11.5.0"
   }
+
 }
