@@ -1,0 +1,30 @@
+{
+  "name": "FlowerAngel_Login",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^11.5.0",
+    "electron-builder": "^22.0.0"
+  },
+  "build": {
+    "appId": "com.xiaohuaxian.login",
+    "productName": "小花仙便携登录器",
+    "files": [
+      "**/*"
+    ],
+    "icon": "icon/icon.ico",
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
