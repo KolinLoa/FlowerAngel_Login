@@ -30,8 +30,10 @@
   },
   "private": true,
   "devDependencies": {
-    "electron-builder": "^22.0.0",
-    "electron": "^11.5.0"
+    "electron": "^11.5.0",
+    "electron-builder": "^22.0.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
   }
-
 }
