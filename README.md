@@ -1,5 +1,5 @@
 <div align="center">
-<img width="256" src="https://github.com/KolinLoa/KolinLoa/blob/main/src/retouch_2024102023135312_edit_198664131511872.jpg" alt="FlowerAngle Logo">
+<img width="128" src="https://github.com/KolinLoa/KolinLoa/blob/main/src/retouch_2024102023135312_edit_198664131511872.jpg" alt="FlowerAngle Logo">
 
 ## 🎨小花仙便携登录器🎨  
 
