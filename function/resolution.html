@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置分辨率</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 300px; /* 固定宽度 */
+      height: 200px; /* 固定高度 */
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 垂直居中 */
+      align-items: center; /* 水平居中 */
+      font-size: 12px; /* 四号字体（约12px） */
+    }
+    h1 {
+      margin: 0 0 10px 0; /* 标题与输入框之间的间距 */
+      text-align: center; /* 标题居中 */
+    }
+    label {
+      text-align: center; /* 标签居中 */
+    }
+    input {
+      margin-bottom: 10px; /* 输入框之间的间距 */
+    }
+  </style>
+</head>
+<body>
+<label for="width">宽度:</label>
+<input type="number" id="width" required>
+<br>
+<label for="height">高度:</label>
+<input type="number" id="height" required>
+<br>
+<button id="submit">保存</button>
+<button id="reset">重置</button>
+<p id="error" style="color: red;"></p> <!-- 用于显示错误信息 -->
+
+<script>
+  const { ipcRenderer } = require('electron');
+
+  document.getElementById('submit').addEventListener('click', () => {
+    const width = parseInt(document.getElementById('width').value);
+    const height = parseInt(document.getElementById('height').value);
+    ipcRenderer.send('set-window-size', width, height);
+  });
+
+  // 添加重置按钮的事件监听
+  document.getElementById('reset').addEventListener('click', () => {
+    ipcRenderer.send('reset-window-size'); // 发送重置事件
+  });
+
+  ipcRenderer.on('size-error', (event, message) => {
+    document.getElementById('error').textContent = message; // 显示错误信息
+  });
+</script>
+</body>
+</html>
