@@ -52,7 +52,7 @@ ______________________________
 
 ## 🎉 鸣谢
 
-
+🍻 [clean-flash-builds](https://github.com/darktohka/clean-flash-builds) - Repository of clean Flash Player builds.
 <div>
 <img width="64" src="https://code.visualstudio.com/assets/images/code-stable.png" alt="VSCode Logo">
 <img width="64" src="https://blog.jetbrains.com/wp-content/uploads/2019/01/WebStorm-1.svg" alt="Webstorm Logo">
