@@ -1,6 +1,6 @@
 {
   "name": "FlowerAngel_Login",
-  "version": "1.0.0",
+  "version": "1.0.0beta",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
