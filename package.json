@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "package": "electron-builder --win"
+    "package": "electron-builder"
   },
   "build": {
     "appId": "com.flowerangel.login",
@@ -13,15 +13,35 @@
     "files": [
       "**/*"
     ],
-    "extraResources": [
-      {
-        "from": "assert/pepflashplayer.dll",
-        "to": "pepflashplayer.dll"
-      }
-    ],
     "win": {
       "target": "zip",
-      "icon": "icon/icon.ico"
+      "icon": "icon/icon.ico",
+      "extraResources": [
+        {
+          "from": "assert/pepflashplayer.dll",
+          "to": "pepflashplayer.dll"
+        }
+      ]
+    },
+    "mac": {
+      "target": "zip",
+      "icon": "icon/icon.icns",
+      "extraResources": [
+        {
+          "from": "assert/PepperFlashPlayer.plugin",
+          "to": "PepperFlashPlayer.plugin"
+        }
+      ]
+    },
+    "linux": {
+      "target": "zip",
+      "icon": "icon/icon.png",
+      "extraResources": [
+        {
+          "from": "assert/libpepflashplayer.so",
+          "to": "libpepflashplayer.so"
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,
