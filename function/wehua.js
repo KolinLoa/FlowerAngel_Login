@@ -42,6 +42,15 @@ function createSizeInputWindow(mainWindow) {
 
     sizeWindow.loadFile(path.join(__dirname, 'resolution.html'));
 
+    // 注入隐藏滚动条的 CSS
+    sizeWindow.webContents.on('did-finish-load', () => {
+        sizeWindow.webContents.insertCSS(`
+            ::-webkit-scrollbar {
+                display: none; /* 隐藏滚动条 */
+            }
+        `);
+    });
+
     ipcMain.on('set-window-size', (event, newWidth, newHeight) => {
         // 检查新大小是否大于等于原始大小
         if (newWidth >= originalSize.width && newHeight >= originalSize.height) {
@@ -83,7 +92,18 @@ function createWindow() {
     mainWindow.setSize(width, height);
 
     mainWindow.webContents.on('did-finish-load', () => {
-        mainWindow.webContents.insertCSS('body { user-select: none; }');
+        // 注入隐藏滚动条的 CSS
+        mainWindow.webContents.insertCSS(`
+            ::-webkit-scrollbar {
+                display: none; /* 隐藏滚动条 */
+            }
+            body {
+                overflow: hidden; /* 禁止滚动 */
+            }
+            body {
+                user-select: none; /* 禁止文本选择 */
+            }
+        `);
     });
 
     // 使用 before-input-event 捕获 F1 键
